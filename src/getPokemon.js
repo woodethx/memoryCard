@@ -8,6 +8,12 @@ function pick10mons(min, max) {
   }
   return arr;
 }
+function pretty(str) {
+  return str
+    .split('-') 
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))  
+    .join(' ');  
+}
 
 export default function get10mons(gen){
     let min; let max;
@@ -51,7 +57,7 @@ export default function get10mons(gen){
         const response = await fetch(url);
         const raw = await response.json();
         arrData[i] = {};
-        arrData[i].name = raw.species.name;
+        arrData[i].name = pretty(raw.species.name);
         arrData[i].sprite = raw.sprites.front_default;
     })
     return arrData;
